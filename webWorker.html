@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>web worker</title>
+    </head>
+    <body>
+        <h2>Web Worker</h2>
+        <button id="sum">calc sum </button>
+        <button id="bg">change bg</button>
+
+        <script>
+
+    var worker = new Worker("worker.js")
+    var sum = document.getElementById("sum");
+    var bg = document.getElementById("bg");
+
+    if (typeof(Worker) !== "undefined") {
+        sum.onclick=function(){
+        //     var sum1=0;
+        // for(var i=0;i<10000000000;i++){
+        //     sum1+=i;
+        // }
+        // alert(sum1)
+        worker.postMessage("");
+            }
+worker.onmessage=function(message){
+    alert(message.data)
+}
+
+        bg.onclick = function(){
+            if (document.body.style.background!=="pink"){
+                document.body.style.background="pink";
+            }else{
+                document.body.style.background="green"
+            }
+        }
+ 
+} else {
+  console.log("nooo")
+}
+   </script>
+    </body>
+</html>
